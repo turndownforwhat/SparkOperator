@@ -1,0 +1,354 @@
+{
+  "message": "",
+  "result": true,
+  "context": {
+    "body": {
+      "operator": {
+        "minus_14022db395193200a31e5484e04f1524": {
+          "pre": [
+            "by_day_3c2f028e9a75331db909bb5ade4a831e"
+          ],
+          "outputs": [
+            {
+              "chart": {
+                "tag_id": "by_day",
+                "title": "房间004 - 房间003"
+              },
+              "database": {
+                "type": "mysql",
+                "params": {
+                  "passwd": "root",
+                  "ip": "120.76.226.75",
+                  "dbname": "middle_result",
+                  "user": "root",
+                  "table": "42ad0a12-9c0b-3955-aa9d-de29bde1b769",
+                  "port": "3306"
+                }
+              }
+            }
+          ],
+          "job": {
+            "status": "SUCCESS",
+            "message": "",
+            "start_at": "2018-04-27 03:38:24",
+            "id": "e52b3279-c9ee-3d63-ab47-2c4e2f440e55",
+            "end_at": "2018-04-27 03:38:24"
+          },
+          "params": {
+            "_poke_interval": 2,
+            "job_data": {
+              "node_id": "minus_14022db395193200a31e5484e04f1524"
+            }
+          },
+          "debug": {},
+          "type": "operator/minus",
+          "id": "minus_14022db395193200a31e5484e04f1524"
+        },
+        "by_day_3c2f028e9a75331db909bb5ade4a831e": {
+          "pre": [
+            "room_4a0c962da1013e63bded0fb0f85c4ac5",
+            "room_2dfe39239a0c33dfb817988b88434366"
+          ],
+          "outputs": [
+            {
+              "chart": {
+                "tag_id": "by_day",
+                "title": "房间004"
+              },
+              "database": {
+                "type": "mysql",
+                "params": {
+                  "passwd": "root",
+                  "ip": "120.76.226.75",
+                  "port": "3306",
+                  "user": "root",
+                  "table": "t_m_day",
+                  "where": {
+                    "start": 1451705100000,
+                    "entity_id": "0000100270001",
+                    "end": 1451877900000
+                  },
+                  "dbname": "energy_test_data"
+                }
+              }
+            },
+            {
+              "chart": {
+                "tag_id": "by_day",
+                "title": "房间003"
+              },
+              "database": {
+                "type": "mysql",
+                "params": {
+                  "passwd": "root",
+                  "ip": "120.76.226.75",
+                  "port": "3306",
+                  "user": "root",
+                  "table": "t_m_day",
+                  "where": {
+                    "start": 1451705100000,
+                    "entity_id": "0000100270003",
+                    "end": 1451877900000
+                  },
+                  "dbname": "energy_test_data"
+                }
+              }
+            }
+          ],
+          "job": {
+            "status": "SUCCESS",
+            "message": "",
+            "start_at": "2018-04-27 03:31:03",
+            "id": "35d6ddef-d8c4-3021-b216-6bbc48beff75",
+            "end_at": "2018-04-27 03:31:03"
+          },
+          "params": {
+            "_poke_interval": 1,
+            "job_data": {
+              "start": 1451705100000,
+              "node_id": "by_day_3c2f028e9a75331db909bb5ade4a831e",
+              "end": 1451877900000,
+              "type": "by_day"
+            }
+          },
+          "debug": {},
+          "type": "filter/by_day",
+          "id": "by_day_3c2f028e9a75331db909bb5ade4a831e"
+        }
+      },
+      "source": {
+        "room_4a0c962da1013e63bded0fb0f85c4ac5": {
+          "pre": [],
+          "id": "room_4a0c962da1013e63bded0fb0f85c4ac5",
+          "entity": {
+            "id": "0000100270001",
+            "name": "房间004"
+          }
+        },
+        "room_2dfe39239a0c33dfb817988b88434366": {
+          "pre": [],
+          "id": "room_2dfe39239a0c33dfb817988b88434366",
+          "entity": {
+            "id": "0000100270003",
+            "name": "房间003"
+          }
+        }
+      },
+      "sink": {
+        "mysql_999ac53fb1f63e66bb484c6c79e91c28": {
+          "pre": [
+            "by_day_3c2f028e9a75331db909bb5ade4a831e"
+          ],
+          "outputs": [
+            {
+              "chart": {
+                "tag_id": "by_day",
+                "title": "房间004"
+              },
+              "database": {
+                "type": "mysql",
+                "params": {
+                  "passwd": "root",
+                  "ip": "120.76.226.75",
+                  "port": "3306",
+                  "user": "root",
+                  "table": "t_m_day",
+                  "where": {
+                    "start": 1451705100000,
+                    "entity_id": "0000100270001",
+                    "end": 1451877900000
+                  },
+                  "dbname": "energy_test_data"
+                }
+              }
+            },
+            {
+              "chart": {
+                "tag_id": "by_day",
+                "title": "房间003"
+              },
+              "database": {
+                "type": "mysql",
+                "params": {
+                  "passwd": "root",
+                  "ip": "120.76.226.75",
+                  "port": "3306",
+                  "user": "root",
+                  "table": "t_m_day",
+                  "where": {
+                    "start": 1451705100000,
+                    "entity_id": "0000100270003",
+                    "end": 1451877900000
+                  },
+                  "dbname": "energy_test_data"
+                }
+              }
+            }
+          ],
+          "job": {
+            "status": "SUCCESS",
+            "message": "",
+            "start_at": "2018-04-27 03:31:15",
+            "id": "d0404b23-46c9-3e55-8646-e4951442a6d9",
+            "end_at": "2018-04-27 03:31:15"
+          },
+          "id": "mysql_999ac53fb1f63e66bb484c6c79e91c28",
+          "debug": {}
+        },
+        "mysql_73b6b4357ec9384f951883a403e40e6c": {
+          "pre": [
+            "minus_14022db395193200a31e5484e04f1524"
+          ],
+          "outputs": [
+            {
+              "chart": {
+                "tag_id": "by_day",
+                "title": "房间004 - 房间003"
+              },
+              "database": {
+                "type": "mysql",
+                "params": {
+                  "passwd": "root",
+                  "ip": "120.76.226.75",
+                  "dbname": "middle_result",
+                  "user": "root",
+                  "table": "42ad0a12-9c0b-3955-aa9d-de29bde1b769",
+                  "port": "3306"
+                }
+              }
+            }
+          ],
+          "job": {
+            "status": "SUCCESS",
+            "message": "",
+            "start_at": "2018-04-27 03:38:34",
+            "id": "7f4105f2-03ce-3eb2-bdca-60f80d38d405",
+            "end_at": "2018-04-27 03:38:34"
+          },
+          "id": "mysql_73b6b4357ec9384f951883a403e40e6c",
+          "debug": {}
+        }
+      }
+    },
+    "lock": 20,
+    "header": {
+      "view": [
+        {
+          "linker_type": "linker_type_broken",
+          "params": {
+            "build_id": {
+              "build_id": "build_001",
+              "build_name": "建筑001"
+            },
+            "room_id": {
+              "room_id": "0000100270001",
+              "room_name": "房间004"
+            },
+            "floor_id": {
+              "floor_name": "楼层04",
+              "floor_id": "floor_004"
+            },
+            "project_id": {
+              "project_name": "项目001",
+              "project_id": "project_001"
+            },
+            "branch_1": "build_id"
+          },
+          "upstream": [],
+          "position": {
+            "y": 74,
+            "x": 19
+          },
+          "type": "source/room",
+          "id": "room_4a0c962da1013e63bded0fb0f85c4ac5"
+        },
+        {
+          "linker_type": "linker_type_broken",
+          "params": {
+            "build_id": {
+              "build_id": "build_001",
+              "build_name": "建筑001"
+            },
+            "room_id": {
+              "room_id": "0000100270003",
+              "room_name": "房间003"
+            },
+            "floor_id": {
+              "floor_name": "楼层04",
+              "floor_id": "floor_004"
+            },
+            "project_id": {
+              "project_name": "项目001",
+              "project_id": "project_001"
+            },
+            "branch_1": "build_id"
+          },
+          "upstream": [],
+          "position": {
+            "y": 515,
+            "x": 19
+          },
+          "type": "source/room",
+          "id": "room_2dfe39239a0c33dfb817988b88434366"
+        },
+        {
+          "linker_type": "linker_type_broken",
+          "params": {
+            "start": 1451705100000,
+            "end": 1451877900000
+          },
+          "upstream": [
+            "room_4a0c962da1013e63bded0fb0f85c4ac5",
+            "room_2dfe39239a0c33dfb817988b88434366"
+          ],
+          "position": {
+            "y": 302,
+            "x": 370
+          },
+          "type": "filter/by_day",
+          "id": "by_day_3c2f028e9a75331db909bb5ade4a831e"
+        },
+        {
+          "linker_type": "linker_type_broken",
+          "params": {},
+          "upstream": [
+            "by_day_3c2f028e9a75331db909bb5ade4a831e"
+          ],
+          "position": {
+            "y": 145,
+            "x": 633
+          },
+          "type": "operator/minus",
+          "id": "minus_14022db395193200a31e5484e04f1524"
+        },
+        {
+          "linker_type": "linker_type_curve",
+          "params": {},
+          "upstream": [
+            "by_day_3c2f028e9a75331db909bb5ade4a831e"
+          ],
+          "position": {
+            "y": 515,
+            "x": 633
+          },
+          "type": "sink/mysql",
+          "id": "mysql_999ac53fb1f63e66bb484c6c79e91c28"
+        },
+        {
+          "linker_type": "linker_type_curve",
+          "params": {},
+          "upstream": [
+            "minus_14022db395193200a31e5484e04f1524"
+          ],
+          "position": {
+            "y": 145,
+            "x": 967
+          },
+          "type": "sink/mysql",
+          "id": "mysql_73b6b4357ec9384f951883a403e40e6c"
+        }
+      ],
+      "flow_id": "2ffd275c-031b-3a43-864b-4c75ecb7f0d2"
+    }
+  }
+}
