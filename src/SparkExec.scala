@@ -37,6 +37,7 @@ object SparkExec {
 
     val sparkConf = new SparkConf()
       .setAppName("SparkAdd")
+      .setMaster("local")
     val sc = new SparkContext(sparkConf)
     val sqc = new SQLContext(sc)
 
@@ -82,9 +83,13 @@ object SparkExec {
     val paramsTuples = List(paramsTuple1,paramsTuple2,paramsTuple3)
     var onlyValueRDD:List[RDD[(Long, String)]] = List()
 
+    var timestampDs = getDsValue(sqc,paramsTuples.head,"timestamp").rdd
+      .zipWithIndex()
+      .map(a=>(a._2.toLong+1,a._1))
+
     for( x <- paramsTuples.indices){
-      var ds = getDsValue(sqc,paramsTuples(x))
-      var dsWithindex = ds.rdd
+      var valueDs = getDsValue(sqc,paramsTuples(x),"value")
+      var dsWithindex = valueDs.rdd
         .zipWithIndex()
         .map(a=>(a._2.toLong+1,a._1))
 
@@ -104,7 +109,8 @@ object SparkExec {
         .map(a=>(a._2.toLong+1,a._1))
     }
 
-    var resultDf = unionRDD
+    var resultRDD = unionRDD.join(timestampDs).sortByKey()
+    var resultDf = resultRDD
       .toDF()
 
     resultDf.show(50)
@@ -115,14 +121,16 @@ object SparkExec {
     df.show(limit)
   }
 
-  def getDsValue(sqc:SQLContext, paramTuple:(Map[String,String],Map[String,String])) : Dataset[String] = {
+  def getDsValue(sqc:SQLContext,
+                 paramTuple:(Map[String,String],Map[String,String]),
+                 columnName:String) : Dataset[String] = {
     import sqc.implicits._
     val ds = sqc.read
       .format("jdbc")
       .options(paramTuple._1)
       .load()
       .filter(genFilterSql(paramTuple._2))
-      .select("value")
+      .select(columnName)
       .as[String]
 
     ds
