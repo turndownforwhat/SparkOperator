@@ -44,7 +44,7 @@ class HttpUtil {
     connection.setConnectTimeout(connectTimeout)
     connection.setReadTimeout(readTimeout)
     connection.setRequestMethod(requestMethod)
-    connection.setRequestProperty("content-type","application/x-www-form-urlencoded")
+    connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded")
     connection.connect()
 
     var writer = new BufferedReader(new InputStreamReader(connection.getInputStream))
