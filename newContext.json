@@ -1,0 +1,311 @@
+{
+  "context": {
+    "body": {
+      "operator": {
+        "minus_91534cdee6d93da79d4fef7616911203": {
+          "pre": [
+            "by_day_b4d301f9cc4a33ca93b034e27811117c"
+          ],
+          "outputs": [
+            {
+              "chart": {
+                "fetch_strategy": {
+                  "type": "fetch_more",
+                  "total": 700,
+                  "range_from": 1514818800000,
+                  "range_to": 1575129600000
+                },
+                "tag_id": "by_day",
+                "title": "房间0001 - 房间0002"
+              },
+              "database": {
+                "type": "mysql",
+                "params": {
+                  "passwd": "root",
+                  "ip": "120.76.226.75",
+                  "dbname": "middle_result",
+                  "user": "root",
+                  "table": "47f36ee7-17d4-3a71-833d-7ec65c5e92c7",
+                  "port": "3306"
+                }
+              }
+            }
+          ],
+          "job": {
+            "status": "SUCCESS",
+            "message": "",
+            "start_at": "2018-05-22 07:53:11",
+            "id": "011ff341-5a22-34a7-ba37-68fddb107648",
+            "end_at": "2018-05-22 07:53:15"
+          },
+          "params": {
+            "_poke_interval": 2,
+            "job_data": {
+              "node_id": "minus_91534cdee6d93da79d4fef7616911203"
+            }
+          },
+          "debug": {},
+          "type": "operator/minus",
+          "id": "minus_91534cdee6d93da79d4fef7616911203"
+        },
+        "by_day_b4d301f9cc4a33ca93b034e27811117c": {
+          "pre": [
+            "room_a2c55f1f33383e06a6bf7f6de71675d4",
+            "room_b10e135ad1753e059027fea87868ab88"
+          ],
+          "outputs": [
+            {
+              "chart": {
+                "debug": {
+                  "stmt": "SELECT t_m_day.id, t_m_day.entity_id, t_m_day.value, t_m_day.timestamp, t_m_day.last_update \nFROM t_m_day \nWHERE t_m_day.timestamp > %s AND t_m_day.timestamp < %s AND t_m_day.entity_id = %s ORDER BY t_m_day.timestamp",
+                  "size": 699
+                },
+                "fetch_strategy": {
+                  "type": "fetch_more",
+                  "total": 699,
+                  "range_from": 1514818800000,
+                  "range_to": 1575043200000
+                },
+                "tag_id": "by_day",
+                "title": "房间0001"
+              },
+              "database": {
+                "type": "mysql",
+                "params": {
+                  "passwd": "root",
+                  "ip": "192.168.50.185",
+                  "port": "3306",
+                  "user": "root",
+                  "table": "t_m_day",
+                  "where": {
+                    "start": 1514736000000,
+                    "entity_id": "0001",
+                    "end": 1575129600000
+                  },
+                  "dbname": "kafka_sink"
+                }
+              }
+            },
+            {
+              "chart": {
+                "debug": {
+                  "stmt": "SELECT t_m_day.id, t_m_day.entity_id, t_m_day.value, t_m_day.timestamp, t_m_day.last_update \nFROM t_m_day \nWHERE t_m_day.timestamp > %s AND t_m_day.timestamp < %s AND t_m_day.entity_id = %s ORDER BY t_m_day.timestamp",
+                  "size": 699
+                },
+                "fetch_strategy": {
+                  "type": "fetch_more",
+                  "total": 699,
+                  "range_from": 1514818800000,
+                  "range_to": 1575043200000
+                },
+                "tag_id": "by_day",
+                "title": "房间0002"
+              },
+              "database": {
+                "type": "mysql",
+                "params": {
+                  "passwd": "root",
+                  "ip": "192.168.50.185",
+                  "port": "3306",
+                  "user": "root",
+                  "table": "t_m_day",
+                  "where": {
+                    "start": 1514736000000,
+                    "entity_id": "0002",
+                    "end": 1575129600000
+                  },
+                  "dbname": "kafka_sink"
+                }
+              }
+            }
+          ],
+          "job": {
+            "status": "SUCCESS",
+            "message": "",
+            "start_at": "2018-05-22 07:53:04",
+            "id": "4b43c401-9f40-3225-81e6-cb29082a3ace",
+            "end_at": "2018-05-22 07:53:05"
+          },
+          "params": {
+            "_poke_interval": 1,
+            "job_data": {
+              "start": 1514736000000,
+              "node_id": "by_day_b4d301f9cc4a33ca93b034e27811117c",
+              "end": 1575129600000,
+              "type": "by_day"
+            }
+          },
+          "debug": {},
+          "type": "filter/by_day",
+          "id": "by_day_b4d301f9cc4a33ca93b034e27811117c"
+        }
+      },
+      "source": {
+        "room_a2c55f1f33383e06a6bf7f6de71675d4": {
+          "pre": [],
+          "id": "room_a2c55f1f33383e06a6bf7f6de71675d4",
+          "entity": {
+            "id": "0001",
+            "name": "房间0001"
+          }
+        },
+        "room_b10e135ad1753e059027fea87868ab88": {
+          "pre": [],
+          "id": "room_b10e135ad1753e059027fea87868ab88",
+          "entity": {
+            "id": "0002",
+            "name": "房间0002"
+          }
+        }
+      },
+      "sink": {
+        "mysql_03dc904f25083901ba6aea8cc7bd1c45": {
+          "pre": [
+            "minus_91534cdee6d93da79d4fef7616911203"
+          ],
+          "outputs": [
+            {
+              "chart": {
+                "fetch_strategy": {
+                  "type": "fetch_more",
+                  "total": 700,
+                  "range_from": 1514818800000,
+                  "range_to": 1575129600000
+                },
+                "tag_id": "by_day",
+                "title": "房间0001 - 房间0002"
+              },
+              "database": {
+                "type": "mysql",
+                "params": {
+                  "passwd": "root",
+                  "ip": "120.76.226.75",
+                  "dbname": "middle_result",
+                  "user": "root",
+                  "table": "47f36ee7-17d4-3a71-833d-7ec65c5e92c7",
+                  "port": "3306"
+                }
+              }
+            }
+          ],
+          "job": {
+            "status": "SUCCESS",
+            "message": "",
+            "start_at": "2018-05-22 07:53:20",
+            "id": "5c4eb824-0eda-33c2-95b9-517ecd22e84b",
+            "end_at": "2018-05-22 07:53:20"
+          },
+          "id": "mysql_03dc904f25083901ba6aea8cc7bd1c45",
+          "debug": {}
+        }
+      }
+    },
+    "lock": 13,
+    "header": {
+      "view": [
+        {
+          "linker_type": "linker_type_curve",
+          "params": {
+            "build_id": {
+              "build_id": "0026",
+              "build_name": "建筑01"
+            },
+            "room_id": {
+              "room_name": "房间0001",
+              "room_id": "0001"
+            },
+            "floor_id": {
+              "floor_name": "楼层01",
+              "floor_id": "1"
+            },
+            "project_id": {
+              "project_name": "项目01",
+              "project_id": "project_001"
+            },
+            "branch_1": "build_id"
+          },
+          "upstream": [],
+          "position": {
+            "y": 38,
+            "x": 27
+          },
+          "type": "source/room",
+          "id": "room_a2c55f1f33383e06a6bf7f6de71675d4"
+        },
+        {
+          "linker_type": "linker_type_curve",
+          "params": {
+            "build_id": {
+              "build_id": "0026",
+              "build_name": "建筑01"
+            },
+            "room_id": {
+              "room_name": "房间0002",
+              "room_id": "0002"
+            },
+            "floor_id": {
+              "floor_name": "楼层01",
+              "floor_id": "1"
+            },
+            "project_id": {
+              "project_name": "项目01",
+              "project_id": "project_001"
+            },
+            "branch_1": "build_id"
+          },
+          "upstream": [],
+          "position": {
+            "y": 567,
+            "x": 24
+          },
+          "type": "source/room",
+          "id": "room_b10e135ad1753e059027fea87868ab88"
+        },
+        {
+          "linker_type": "linker_type_curve",
+          "params": {
+            "start": 1514736000000,
+            "end": 1575129600000
+          },
+          "upstream": [
+            "room_a2c55f1f33383e06a6bf7f6de71675d4",
+            "room_b10e135ad1753e059027fea87868ab88"
+          ],
+          "position": {
+            "y": 299,
+            "x": 357
+          },
+          "type": "filter/by_day",
+          "id": "by_day_b4d301f9cc4a33ca93b034e27811117c"
+        },
+        {
+          "linker_type": "linker_type_curve",
+          "params": {},
+          "upstream": [
+            "by_day_b4d301f9cc4a33ca93b034e27811117c"
+          ],
+          "position": {
+            "y": 555,
+            "x": 630
+          },
+          "type": "operator/minus",
+          "id": "minus_91534cdee6d93da79d4fef7616911203"
+        },
+        {
+          "linker_type": "linker_type_curve",
+          "params": {},
+          "upstream": [
+            "minus_91534cdee6d93da79d4fef7616911203"
+          ],
+          "position": {
+            "y": 300,
+            "x": 905
+          },
+          "type": "sink/mysql",
+          "id": "mysql_03dc904f25083901ba6aea8cc7bd1c45"
+        }
+      ],
+      "flow_id": "cf98c897-db7b-3341-9bc1-a788f01279b2"
+    }
+  }
+}
