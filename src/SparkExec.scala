@@ -3,14 +3,14 @@ import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{Column, DataFrame, Dataset, SQLContext}
 
-case class energy_data(id:Int,entity_id:String,value:String,timestamp:Long,timestamp_str:String)
-case class onlyValue(value:String)
+//case class energy_data(id:Int,entity_id:String,value:String,timestamp:Long,timestamp_str:String)
+//case class onlyValue(value:String)
 
 object SparkExec {
 
   def main(args:Array[String]) : Unit = {
 
-    var DatasToOperate: List[Dataset[onlyValue]] = List()
+//    var DatasToOperate: List[Dataset[onlyValue]] = List()
 
     //for saving the info of database
     var dbParams: Map[String,String] = Map()
