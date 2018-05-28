@@ -107,9 +107,9 @@ object SparkExec {
         .map(a=>(a._2.toLong+1,a._1))
     }
 
-    var result = unionRDD.toDS().joinWith(timestampDs)
-    var resultDf = resultRDD
-      .toDF()
+
+    var resultDf = unionRDD.toDF()
+    //  .toDF()
 
     resultDf.show(50)
   }

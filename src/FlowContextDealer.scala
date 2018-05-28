@@ -8,11 +8,16 @@ class FlowContextDealer {
     this.context = jsonObject
   }
 
-  def readOperatorPres(operatorId:String):JsonObject = {
-    context.getAsJsonObject("body")
+  def readOperatorPres(operatorId:String):JsonArray = {
+    context.getAsJsonObject("context")
+      .getAsJsonObject("body")
       .getAsJsonObject("operator")
       .getAsJsonObject(operatorId)
-      .getAsJsonObject("pre")
+      .getAsJsonArray("pre")
+  }
+
+  def getBody():JsonObject = {
+    context.getAsJsonObject("context").getAsJsonObject("body")
   }
 
 }
