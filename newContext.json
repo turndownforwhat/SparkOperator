@@ -2,6 +2,32 @@
   "context": {
     "body": {
       "operator": {
+        "spark_add_201805282053":{
+          "pre": [
+            "by_day_b4d301f9cc4a33ca93b034e27811117c"
+          ],
+          "outputs":[
+            {
+
+            }
+          ],
+          "job": {
+            "status": "SUCCESS",
+            "message": "",
+            "start_at": "2018-05-22 07:53:11",
+            "id": "011ff341-5a22-34a7-ba37-68fddb107648",
+            "end_at": "2018-05-22 07:53:15"
+          },
+          "params": {
+            "_poke_interval": 2,
+            "job_data": {
+              "node_id": "minus_91534cdee6d93da79d4fef7616911203"
+            }
+          },
+          "debug": {},
+          "type":"operator/SparkAdd",
+          "id":"spark_add_201805282053"
+        },
         "minus_91534cdee6d93da79d4fef7616911203": {
           "pre": [
             "by_day_b4d301f9cc4a33ca93b034e27811117c"

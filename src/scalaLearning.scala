@@ -8,17 +8,11 @@ object scalaLearning {
 
     var returnData = new JsonParser().parse(content).getAsJsonObject
 
-    if(returnData == null) {
-      print("fuck")
-    }
-
     var dealer = new FlowContextDealer(returnData)
 
-    var toret = dealer.readOperatorPres("minus_91534cdee6d93da79d4fef7616911203")
+    val dbs = dealer.readOperatorPres("minus_91534cdee6d93da79d4fef7616911203")
 
-    println(toret)
-
-
+    println(dbs)
 
   }
 
