@@ -83,9 +83,7 @@ object SparkExec {
     val paramsTuples = List(paramsTuple1,paramsTuple2,paramsTuple3)
     var onlyValueRDD:List[RDD[(Long, String)]] = List()
 
-    var timestampDs = getDsValue(sqc,paramsTuples.head,"timestamp").rdd
-      .zipWithIndex()
-      .map(a=>(a._2.toLong+1,a._1))
+    val timestampDs = getOriginalColumn(sqc,paramsTuples.head,"timestamp")
 
     for( x <- paramsTuples.indices){
       var valueDs = getDsValue(sqc,paramsTuples(x),"value")
@@ -109,7 +107,7 @@ object SparkExec {
         .map(a=>(a._2.toLong+1,a._1))
     }
 
-    var resultRDD = unionRDD.join(timestampDs).sortByKey()
+    var result = unionRDD.toDS().joinWith(timestampDs)
     var resultDf = resultRDD
       .toDF()
 

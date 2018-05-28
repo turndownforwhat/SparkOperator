@@ -1,9 +1,18 @@
-import org.apache.spark.rdd.RDD
-import java.net.HttpURLConnection
+import com.google.gson._
 
 class FlowContextDealer {
-  val apiBase = "https://private-eb3791-job2.apiary-mock.com/context/2ffd275c-031b-3a43-864b-4c75ecb7f0d2"
-  val flow_id = "2ffd275c-031b-3a43-864b-4c75ecb7f0d2"
-  val joesUrl = "203.195.152.12:4000/users?username=Jom&orgName=Org1"
+  var context = new JsonObject
+
+  def this(jsonObject: JsonObject){
+    this()
+    this.context = jsonObject
+  }
+
+  def readOperatorPres(operatorId:String):JsonObject = {
+    context.getAsJsonObject("body")
+      .getAsJsonObject("operator")
+      .getAsJsonObject(operatorId)
+      .getAsJsonObject("pre")
+  }
 
 }
