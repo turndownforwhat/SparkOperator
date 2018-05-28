@@ -41,7 +41,7 @@ class FlowContextDealer {
 
   def readOperatorOutputs(operatorId:String):JsonArray = {
     this.readOperator(operatorId)
-      .getAsJsonArray("Outputs")
+      .getAsJsonArray("outputs")
   }
 
 

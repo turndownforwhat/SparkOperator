@@ -4,15 +4,17 @@ object scalaLearning {
   def main(args:Array[String]): Unit = {
 
     val httpUtil = new HttpUtil
-    var content = httpUtil.getRestContent("http://10.8.0.32:9090/contexts/cf98c897-db7b-3341-9bc1-a788f01279b2")
+    var content = httpUtil.getRestContent("http://10.8.0.32:9090/contexts/test_SparkAdd_retrieve_and_update")
 
     var returnData = new JsonParser().parse(content).getAsJsonObject
 
     var dealer = new FlowContextDealer(returnData)
 
-    val dbs = dealer.readOperatorPres("minus_91534cdee6d93da79d4fef7616911203")
+    val dbs = dealer.readOperatorPres("spark_add_201805282053")
 
-    println(dbs)
+    val tmp = dbs.get(0).getAsJsonObject.getAsJsonObject("params").getAsJsonPrimitive("dbname").toString
+
+    println(tmp)
 
   }
 
