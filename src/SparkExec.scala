@@ -52,26 +52,36 @@ object SparkExec {
         }
     * */
 
+    // SQLcontext 隐式转换，用于dataframe格式转换
     import sqc.implicits._
-
+    // 初始化中间结果集合
     var onlyValueRDD:List[RDD[(Long, String)]] = List()
-
+    // for循环遍历数据库参数列表，获取各组输入数据
     for( x <- paramsList.indices){
+      //获取数据
       var valueDs = getDsValue(sqc,paramsList(x),"value")
+      //为每一组数据在右侧添加索引，并通过映射函数交换索引与数值的位置
       var dsWithindex = valueDs.rdd
         .zipWithIndex()
         .map(a=>(a._2.toLong+1,a._1))
-
+      //将附加索引的数值数据添加到中间结果集合
       onlyValueRDD = dsWithindex :: onlyValueRDD
-      //dsWithindex.toDS().show(50)
+
     }
 
+    //取出中间结果集合的头元素作为最终输出的RDD，进行循环迭代
     var unionRDD = onlyValueRDD.head
+    //从集合第二位元素开始循环操作
     for(x <- 1 until onlyValueRDD.length){
+      //数据通过索引进行连接，连接后按索引顺序进行排序，得到RDD迭代中间状态
       var middle_RDD = unionRDD
         .join(onlyValueRDD(x))
         .sortByKey()
 
+      //对RDD中间态进行映射
+      //将连接好的双数值列进行类型转换并执行加/减操作
+      //加上索引并交换索引列和数值列的位置
+      //更新输出RDD，开始下一次循环
       unionRDD = middle_RDD
         .map(a => (a._2._1.toDouble + a._2._2.toDouble).toString)
         .zipWithIndex()

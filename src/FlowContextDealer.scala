@@ -27,7 +27,6 @@ class FlowContextDealer {
           .getAsJsonObject
           .get("database"))
       }
-
     }
     dbInfoJsonArray
   }
