@@ -18,13 +18,13 @@ object SparkExec {
     val sqc = new SQLContext(sc)
 
     val httpUtil = new HttpUtil
-    var content = httpUtil.getRestContent("http://10.8.0.32:9090/contexts/test1_SparkAdd_retrieve_and_update")
+    var content = httpUtil.getRestContent("http://10.8.0.32:9090/contexts/" + args.apply(0))
 
     var returnData = new JsonParser().parse(content).getAsJsonObject
 
-    var dealer = new FlowContextDealer(returnData)
+    var contextDealer = new FlowContextDealer(returnData)
 
-    val dbs = dealer.readOperatorPres("spark_add_201805282053")
+    val dbs = contextDealer.readOperatorPres(args.apply(1))
     val dbsIterator = dbs.iterator()
 
     var paramsList:List[ParamEntity] = List()
@@ -88,7 +88,8 @@ object SparkExec {
         .map(a=>(a._2.toLong+1,a._1))
     }
 
-
+    var resultSize = unionRDD.count()
+    var toUpdateOutput= contextDealer.readOperator(args.apply(1))
     var resultDf = unionRDD.toDF()
     //  .toDF()
 
@@ -111,6 +112,7 @@ object SparkExec {
       .filter(genFilterSql(params.getCalcParams()))
       .select(columnName)
       .as[String]
+
 
     ds
   }

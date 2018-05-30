@@ -49,7 +49,36 @@ class FlowContextDealer {
   }
 
   // 根据操作节点id更新该节点的结果输出内容
-  def updateOperatorOutput(operatorId:String,resultSize:Int):JsonArray = {
+  def updateOperatorOutput(operatorId:String,
+                           resultSize:Int,
+                           sinkParams:Map[String,String]):JsonArray = {
+    // 取出当前状态上下文
+    var updatedOperator = this.readOperator(operatorId)
+    
+    // 初始化params
+    var paramsJsonObject = new JsonObject
+    paramsJsonObject.addProperty("ip",sinkParams.apply("ip"))
+    paramsJsonObject.addProperty("passwd",sinkParams.apply("passwd"))
+    paramsJsonObject.addProperty("dbname",sinkParams.apply("dbname"))
+    paramsJsonObject.addProperty("user",sinkParams.apply("user"))
+    paramsJsonObject.addProperty("table",sinkParams.apply("table"))
+    paramsJsonObject.addProperty("port",sinkParams.apply("port"))
+    
+    // 初始化database
+    var dbJsonObject = new JsonObject
+    dbJsonObject.add("params",paramsJsonObject)
+    dbJsonObject.addProperty("type",sinkParams.apply("type"))
+
+    // 将sink database信息写入outputs内
+    var outputsJsonArray = new JsonArray
+    outputsJsonArray.add(dbJsonObject)
+
+    // 将新生成的outputs字段写回到一开始的operator上下文中
+    updatedOperator.add("outputs",outputsJsonArray)
+
+    
+
+    new JsonArray
 
   }
 
